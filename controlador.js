@@ -1,5 +1,6 @@
-//Referencias al formulario
+import { consumirAPI } from "./consumoServicio.js"
 
+//Referencias al formulario
 let nombres=document.getElementById("nombres")
 let cantidadVida=document.getElementById("cantidad")
 let poderAtaque=document.getElementById("ataque")
@@ -11,11 +12,7 @@ let botonFormulario=document.getElementById("boton")
 //Detecto el evento de hacerle clic al boton
 botonFormulario.addEventListener("click",function(evento){
     evento.preventDefault()
-    /*Swal.fire({
-        title: "Good job!",
-        text: "You clicked the button!",
-        icon: "success"
-    });*/
+    
     /*Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -32,5 +29,17 @@ botonFormulario.addEventListener("click",function(evento){
     }
     let datosListosParaViajar=JSON.stringify(datosQueVoyAEnviarAlBack)
 
-    alert(datosListosParaViajar)
+    
+    //LLAMO AL CONSUMO
+    consumirAPI(datosListosParaViajar)
+    .then(function(respuesta){
+
+        Swal.fire({
+        title: "Buen Trabajo!",
+        text: "Hemos registrado el perosnaje con exito",
+        icon: "success"
+        });
+        
+    })
+
 })
